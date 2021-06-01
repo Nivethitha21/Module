@@ -36,12 +36,12 @@ public class TicketAlloc {
 				System.out.println("\nEnter berth preference: \n 1.Lower \n 2.Middle \n 3.Upper \n 4.Side Upper \n");
 			p.setBerthPreference(sc.nextInt());}
 			temp.add(p);
-			
-			//Check if a child is travelling in given set
+			//Check if a child is travelling in given Booking
 			if(p.getAge() <= 5)
 				flag=true;
 			c--;
 		}
+		//Seat Allocation Code
 		while(temp.size()>0)
 		{
 			Passenger p=temp.remove(0);
@@ -49,7 +49,7 @@ public class TicketAlloc {
 			if(p.getAge()<=5)
 				continue;
 			int b=p.getBerthPreference();
-			//RaC Conditions
+			//Check if Booking is to be done for RaC
 			if(l>7 && m>7 && u>7 && sp>7)
 			{
 				if(front>15) {
@@ -70,7 +70,6 @@ public class TicketAlloc {
 					{
 						if(RaC[front]==null) {
 						RaC[front]=p;
-//						int t=(front%2!=0 && front!=0)?front-1:front;
 						p.setSeatNo((front/2)*8+7);
 						front++;
 					}
@@ -87,6 +86,7 @@ public class TicketAlloc {
 			{
 				if(sp>8)
 				{
+					//berthpreference set to 1 if berth asked is not available for women travelling with Children or passenger age>60
 					if(p.getAge()>60 || (p.getGender().equalsIgnoreCase("female")&&flag==true)) { b=1;System.out.print("Entered");}
 					else b=0;
 				}else {
@@ -145,6 +145,7 @@ public class TicketAlloc {
 					l++;
 				}
 				}}
+				//random berth booking if entered berth not available
 			if(b==0)
 			{
 				if(l<=7)
@@ -200,6 +201,7 @@ public class TicketAlloc {
 		int c=sc.nextInt();
 		while(c!=-1 && c<65)
 		{
+			//check if cancel seat is an RaC seat
 			if(c%8==7)
 			{
 				System.out.println("Enter Passenger ID");
@@ -216,6 +218,7 @@ public class TicketAlloc {
 				}
 				else if(RaC[(c/8)+1].getPid()==pi) {
 					System.out.println("Seat No "+c+" Cancelled by pid "+RaC[c/8].getPid());
+					//Moving passenger from waitlist to RaC
 					if(waitList.size()==0)
 						RaC[(c/8)+1]=null;
 					else {
@@ -235,12 +238,14 @@ public class TicketAlloc {
 					rear=front;
 				}
 			}
+			//moving passenger from rac to cancelled
 			else {
 			System.out.println("Seat No "+c+" Cancelled by pid "+Berth[c].getPid());
 			Passenger temp=RaC[rear];
 			Berth[c]=temp;
 			System.out.println("#RAC"+(8*(rear/2)+7)+" moved to "+c);
 			rear++;
+				//moving from waitlist to rac currently promoted
 			if(waitList.size()==0)
 			{
 				RaC[rear-1]=null;
