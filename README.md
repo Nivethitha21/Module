@@ -4,7 +4,7 @@ The module can perform following functionalities:
 1.Booking a ticket with prefered berth
 2.Cancel booking
 3.Print booked tickets
-4.Print tickets available for booking birthwise.
+4.Print tickets available for booking berthwise.
 
 Autofeature to 
 book ticket in RAC if all the berths are full
