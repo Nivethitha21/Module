@@ -1,10 +1,10 @@
 # Module
 Console Application for Railway ticket booking
-1.The module can perform following functionalities:
-2.Booking a ticket with prefered berth
-3.Cancel booking
-4.Print booked tickets
-5.Print tickets available for booking birthwise.
+The module can perform following functionalities:
+1.Booking a ticket with prefered berth
+2.Cancel booking
+3.Print booked tickets
+4.Print tickets available for booking birthwise.
 
 Autofeature to 
 book ticket in RAC if all the berths are full
